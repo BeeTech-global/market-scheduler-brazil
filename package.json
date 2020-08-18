@@ -1,0 +1,109 @@
+{
+  "name": "@beetech/market-scheduler-brazil",
+  "version": "1.0.0",
+  "description": "A moment-business-days wrapper concerning Operations in Brazil",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "node_modules/.bin/jest test/unit --no-cache",
+    "coverage": "node_modules/.bin/jest test/unit --no-cache --coverage",
+    "lint": "node_modules/.bin/eslint src test --ext .js,.ts",
+    "build": "node_modules/.bin/tsc --build tsconfig.json",
+    "build:dev": "node_modules/.bin/tsc --build tsconfig-dev.json",
+    "preinstall": "npm run build:dev",
+    "prepublishOnly": "rm -rf build/ && npm run build"
+  },
+  "keywords": [
+    "moment",
+    "market",
+    "scheduler",
+    "business",
+    "date",
+    "open"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git clone git@github.com:BeeTech-global/market-scheduler-brazil.git"
+  },
+  "author": "BeeTech",
+  "private": true,
+  "license": "LICENSE",
+  "bugs": {
+    "url": "https://github.com/BeeTech-global/market-scheduler-brazil/issues"
+  },
+  "homepage": "https://github.com/BeeTech-global/market-scheduler-brazil#readme",
+  "devDependencies": {
+    "@types/jest": "^26.0.10",
+    "@types/mockdate": "^2.0.0",
+    "@types/moment": "^2.13.0",
+    "@types/node": "^14.6.0",
+    "@typescript-eslint/eslint-plugin": "^3.9.1",
+    "@typescript-eslint/parser": "^3.9.1",
+    "eslint": "^7.7.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jest": "^23.20.0",
+    "jest": "^26.4.0",
+    "jest-watch-repeat": "^2.0.0",
+    "mockdate": "^3.0.2",
+    "ts-jest": "^26.2.0",
+    "typescript": "^3.9.7"
+  },
+  "dependencies": {
+    "moment": "^2.27.0",
+    "moment-business-days": "^1.2.0"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "globals": {
+      "ts-jest": {
+        "diagnostics": false,
+        "tsconfig": "tsconfig-dev.json"
+      }
+    },
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/build/"
+    ],
+    "coverageDirectory": "<rootDir>/reports/jest",
+    "coverageReporters": [
+      "html",
+      "json",
+      "text-summary",
+      "lcov"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "!src/index.ts"
+    ],
+    "watchPlugins": [
+      [
+        "jest-watch-repeat",
+        {
+          "key": "r",
+          "prompt": "repeat test runs."
+        }
+      ]
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 85,
+        "functions": 85,
+        "lines": 85,
+        "statements": 85
+      }
+    }
+  },
+  "config": {
+    "pre-git": {
+      "pre-commit": [
+        "npm run lint && npm test"
+      ],
+      "post-commit": [
+        "git status"
+      ],
+      "pre-push": [
+        "npm run lint && npm run build && npm run audit && npm run coverage"
+      ]
+    }
+  }
+}
