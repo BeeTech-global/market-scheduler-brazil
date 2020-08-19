@@ -1,6 +1,6 @@
 {
   "name": "@beetech/market-scheduler-brazil",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A moment-business-days wrapper concerning Operations in Brazil",
   "main": "build/src/index.js",
   "engines": {
