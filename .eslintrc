@@ -1,0 +1,36 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "airbnb-base",
+    "plugin:jest/recommended",
+    "plugin:jest/style",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "env": {
+    "jest": true,
+    "jest/globals": true
+  },
+  "ignorePatterns": [
+    "node_modules"
+  ],
+  "rules": {
+    "comma-dangle": 0,
+    "prefer-arrow-callback": 0,
+    "class-methods-use-this": 0,
+    "func-names": 0,
+    "newline-before-return": 2,
+    "no-prototype-builtins": 0,
+    "implicit-arrow-linebreak": 0,
+    "no-restricted-syntax": 0,
+    "no-await-in-loop": 0,
+    "operator-linebreak": 0,
+    "import/prefer-default-export": 0,
+    "import/extensions": 0,
+    "import/no-unresolved": 0
+  },
+  "plugins": [
+    "jest",
+    "@typescript-eslint"
+  ]
+}
