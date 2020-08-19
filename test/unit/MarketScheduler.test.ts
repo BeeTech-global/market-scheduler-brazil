@@ -103,6 +103,20 @@ describe('MarketScheduler', () => {
     });
   });
 
+  describe('.isBusinessDay', () => {
+    it('Should return false on Saturday', () => {
+      MockDate.set(saturday);
+      expect(marketScheduler.isBusinessDay()).toBe(false);
+      MockDate.reset();
+    });
+
+    it('Should return true on Monday', () => {
+      MockDate.set(monday);
+      expect(marketScheduler.isBusinessDay()).toBe(true);
+      MockDate.reset();
+    });
+  });
+
   describe('.isMarketOpen', () => {
     it('Should return false on Saturday', () => {
       MockDate.set(saturday);

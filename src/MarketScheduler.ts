@@ -30,6 +30,10 @@ export default class MarketScheduler {
     return now.isBusinessDay() && now.isBefore(this.getClosingTime());
   }
 
+  public isBusinessDay(): boolean {
+    return moment().utc().isBusinessDay();
+  }
+
   public today(): string {
     return moment().utc().format(this.dateFormat);
   }

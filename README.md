@@ -18,6 +18,8 @@
   
   * isMarketOpen(): boolean 
   
+  * isBusinessDay(): boolean 
+  
   * today(): string
   
   * now(): string
