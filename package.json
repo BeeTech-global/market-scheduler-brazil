@@ -1,6 +1,6 @@
 {
   "name": "@beetech/market-scheduler-brazil",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A moment-business-days wrapper concerning Operations in Brazil",
   "main": "build/src/index.js",
   "engines": {
@@ -8,12 +8,11 @@
     "npm": ">=6.0.0"
   },
   "scripts": {
-    "test": "node_modules/.bin/jest test/unit --no-cache",
+    "test": "npm run build:dev && node_modules/.bin/jest test/unit --no-cache",
     "coverage": "node_modules/.bin/jest test/unit --no-cache --coverage",
     "lint": "node_modules/.bin/eslint src test --ext .js,.ts",
     "build": "node_modules/.bin/tsc --build tsconfig.json",
     "build:dev": "node_modules/.bin/tsc --build tsconfig-dev.json",
-    "postinstall": "npm run build:dev",
     "prepublishOnly": "rm -rf build/ && npm run build"
   },
   "keywords": [
