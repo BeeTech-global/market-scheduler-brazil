@@ -29,7 +29,7 @@
     "url": "git+ssh://git clone git@github.com:BeeTech-global/market-scheduler-brazil.git"
   },
   "author": "BeeTech",
-  "private": true,
+  "private": false,
   "license": "LICENSE",
   "bugs": {
     "url": "https://github.com/BeeTech-global/market-scheduler-brazil/issues"
