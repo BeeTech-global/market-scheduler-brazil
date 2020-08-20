@@ -124,14 +124,14 @@ describe('MarketScheduler', () => {
       MockDate.reset();
     });
 
-    it('Should return true on Monday at mid-day', () => {
-      MockDate.set(`${monday} 12:00:00`);
+    it('Should return true on Monday right before market closes', () => {
+      MockDate.set(`${monday} 16:59:59 UTC-3`);
       expect(marketScheduler.isMarketOpen()).toBe(true);
       MockDate.reset();
     });
 
-    it('Should return false on Monday night', () => {
-      MockDate.set(`${monday} 22:00:00`);
+    it('Should return false on Monday just after market closes', () => {
+      MockDate.set(`${monday} 17:00:01 UTC-3`);
       expect(marketScheduler.isMarketOpen()).toBe(false);
       MockDate.reset();
     });
