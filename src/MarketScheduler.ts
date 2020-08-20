@@ -74,6 +74,6 @@ export default class MarketScheduler {
   private getClosingTime(): Moment {
     const closingSecondsAmount = moment.duration(this.cutTimeUtc).asSeconds();
 
-    return moment().startOf('day').add(closingSecondsAmount, 'seconds');
+    return moment().utc().startOf('day').add(closingSecondsAmount, 'seconds');
   }
 }

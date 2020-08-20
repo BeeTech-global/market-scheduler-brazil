@@ -7,4 +7,4 @@ const holidays = brazilianHolidays.getAll();
 
 const marketScheduler = new MarketScheduler('20:00', 'YYYY-MM-DD', 'YYYY-MM-DD HH:mm:ss', holidays);
 
-export default marketScheduler;
+module.exports = marketScheduler;
