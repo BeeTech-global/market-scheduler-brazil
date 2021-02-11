@@ -124,6 +124,8 @@ export default class BrazilianHolidays {
 
   private natal = '12-25';
 
+  private reveillon = '12-31';
+
   private fixedHolidays = [
     this.confraternizacaoUniversal,
     this.tiradentes,
@@ -132,7 +134,8 @@ export default class BrazilianHolidays {
     this.nossaSenhora,
     this.finados,
     this.proclamacaoDaRepublica,
-    this.natal
+    this.natal,
+    this.reveillon
   ];
 
   private toYear: number;
