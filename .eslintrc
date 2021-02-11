@@ -12,7 +12,8 @@
     "jest/globals": true
   },
   "ignorePatterns": [
-    "node_modules"
+    "node_modules",
+    "*.d.ts"
   ],
   "rules": {
     "comma-dangle": 0,
