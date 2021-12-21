@@ -35,6 +35,18 @@ export default class MarketScheduler {
     );
   }
 
+  public isBeforeOpen(): boolean {
+    const now = moment().utc();
+
+    return now.isBefore(this.getOpenTime());
+  }
+
+  public isAfterClose(): boolean {
+    const now = moment().utc();
+
+    return now.isAfter(this.getClosingTime());
+  }
+
   public isBusinessDay(): boolean {
     return moment().utc().isBusinessDay();
   }
@@ -76,15 +88,17 @@ export default class MarketScheduler {
 
   private currentHolidays: string[] = [];
 
-  private getOpenTime(): Moment {
+  public getOpenTime(): Moment {
     const secondsAmount = moment.duration(this.openTimeUtc).asSeconds();
 
-    return moment().utc().startOf('day').add(secondsAmount, 'seconds');
+    return moment().utc().subtract(3, 'hours').startOf('day')
+      .add(secondsAmount, 'seconds');
   }
 
-  private getClosingTime(): Moment {
+  public getClosingTime(): Moment {
     const secondsAmount = moment.duration(this.cutTimeUtc).asSeconds();
 
-    return moment().utc().startOf('day').add(secondsAmount, 'seconds');
+    return moment().utc().subtract(3, 'hours').startOf('day')
+      .add(secondsAmount, 'seconds');
   }
 }

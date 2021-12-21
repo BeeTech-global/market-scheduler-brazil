@@ -149,6 +149,46 @@ describe('MarketScheduler', () => {
     });
   });
 
+  describe('.isBeforeOpen', () => {
+    it('return true on mondays 8Am', () => {
+      MockDate.set(`${monday} 8:59:59 UTC-3`);
+      expect(marketScheduler.isBeforeOpen()).toBe(true);
+      MockDate.reset();
+    });
+
+    it('return false on mondays 10AM', () => {
+      MockDate.set(`${monday} 10:00:00 UTC-3`);
+      expect(marketScheduler.isBeforeOpen()).toBe(false);
+      MockDate.reset();
+    });
+
+    it('return false on mondays at 23:30', () => {
+      MockDate.set(`${monday} 23:59:59 UTC-3`);
+      expect(marketScheduler.isBeforeOpen()).toBe(false);
+      MockDate.reset();
+    });
+  });
+
+  describe('.isAfterClose', () => {
+    it('return false on mondays 8Am', () => {
+      MockDate.set(`${monday} 8:00:00 UTC-3`);
+      expect(marketScheduler.isAfterClose()).toBe(false);
+      MockDate.reset();
+    });
+
+    it('return false on mondays 10AM', () => {
+      MockDate.set(`${monday} 10:00:00 UTC-3`);
+      expect(marketScheduler.isAfterClose()).toBe(false);
+      MockDate.reset();
+    });
+
+    it('return false on mondays at 23:30', () => {
+      MockDate.set(`${monday} 23:30:00 UTC-3`);
+      expect(marketScheduler.isAfterClose()).toBe(true);
+      MockDate.reset();
+    });
+  });
+
   describe('.today', () => {
     it('Should return Wednesday on Wednesday', () => {
       MockDate.set(wednesday);
@@ -169,6 +209,14 @@ describe('MarketScheduler', () => {
     it('Should return holidays informed on instatiation', () => {
       expect(marketScheduler.holidays).toHaveLength(1);
       expect(marketScheduler.holidays[0]).toBe(holiday);
+    });
+  });
+
+  describe('getOpenTime', () => {
+    it('returns monday 9am when its called on monday 10pm', () => {
+      MockDate.set(`${monday} 19:00:00 UTC`);
+      expect(marketScheduler.getOpenTime().isSame('2020-01-06T12:00:00.000Z')).toBe(true);
+      MockDate.reset();
     });
   });
 });
