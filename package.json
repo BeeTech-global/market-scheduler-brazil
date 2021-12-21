@@ -1,7 +1,7 @@
 {
   "name": "@beetech/market-scheduler-brazil",
-  "version": "1.0.4",
-  "description": "A moment-business-days wrapper concerning Operations in Brazil",
+  "version": "2.0.0",
+  "description": "A moment-business-days wrapper concerning Financial Operations based in Brazil",
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
   "engines": {
@@ -30,7 +30,7 @@
     "type": "git",
     "url": "git+ssh://git clone git@github.com:BeeTech-global/market-scheduler-brazil.git"
   },
-  "author": "BeeTech",
+  "author": "RemessaOnline",
   "private": false,
   "license": "LICENSE",
   "bugs": {
