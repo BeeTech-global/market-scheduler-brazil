@@ -88,14 +88,14 @@ export default class MarketScheduler {
 
   private currentHolidays: string[] = [];
 
-  public getOpenTime(): Moment {
+  private getOpenTime(): Moment {
     const secondsAmount = moment.duration(this.openTimeUtc).asSeconds();
 
     return moment().utc().subtract(3, 'hours').startOf('day')
       .add(secondsAmount, 'seconds');
   }
 
-  public getClosingTime(): Moment {
+  private getClosingTime(): Moment {
     const secondsAmount = moment.duration(this.cutTimeUtc).asSeconds();
 
     return moment().utc().subtract(3, 'hours').startOf('day')

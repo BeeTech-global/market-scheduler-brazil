@@ -211,12 +211,4 @@ describe('MarketScheduler', () => {
       expect(marketScheduler.holidays[0]).toBe(holiday);
     });
   });
-
-  describe('getOpenTime', () => {
-    it('returns monday 9am when its called on monday 10pm', () => {
-      MockDate.set(`${monday} 19:00:00 UTC`);
-      expect(marketScheduler.getOpenTime().isSame('2020-01-06T12:00:00.000Z')).toBe(true);
-      MockDate.reset();
-    });
-  });
 });
