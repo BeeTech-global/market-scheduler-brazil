@@ -103,7 +103,7 @@
   "config": {
     "pre-git": {
       "pre-commit": [
-        "npm run lint && npm test"
+        "npm run lint && npm coverage"
       ],
       "post-commit": [
         "git status"
