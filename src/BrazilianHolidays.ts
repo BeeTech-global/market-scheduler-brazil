@@ -48,7 +48,7 @@ export default class BrazilianHolidays {
     return holidays;
   }
 
-  private getEaster(year: number) {
+  getEaster(year: number): string {
     let x = 24;
     let y = 5;
 
@@ -135,7 +135,7 @@ export default class BrazilianHolidays {
     this.finados,
     this.proclamacaoDaRepublica,
     this.natal,
-    this.reveillon
+    this.reveillon,
   ];
 
   private toYear: number;

@@ -10,7 +10,7 @@ const marketScheduler = new MarketScheduler(
   '20:00',
   'YYYY-MM-DD',
   'YYYY-MM-DD HH:mm:ss',
-  holidays
+  holidays,
 );
 
 export default marketScheduler;

@@ -8,7 +8,7 @@ export default class MarketScheduler {
     public readonly cutTimeUtc: string,
     public readonly dateFormat: string,
     public readonly datetimeFormat: string,
-    holidays: string[]
+    holidays: string[],
   ) {
     this.holidays = holidays;
   }
@@ -29,9 +29,9 @@ export default class MarketScheduler {
     const now = moment().utc();
 
     return (
-      now.isBusinessDay() &&
-      now.isBefore(this.getClosingTime()) &&
-      now.isAfter(this.getOpenTime())
+      now.isBusinessDay()
+      && now.isBefore(this.getClosingTime())
+      && now.isAfter(this.getOpenTime())
     );
   }
 
