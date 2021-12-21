@@ -12,6 +12,7 @@
     "test": "npm run build:dev && node_modules/.bin/jest test/unit --no-cache",
     "coverage": "node_modules/.bin/jest test/unit --no-cache --coverage",
     "lint": "node_modules/.bin/eslint src test --ext .js,.ts",
+    "lint:fix": "node_modules/.bin/eslint src test --ext .js,.ts --fix",
     "build": "node_modules/.bin/tsc --build tsconfig.json",
     "build:dev": "node_modules/.bin/tsc --build tsconfig-dev.json",
     "prepublishOnly": "rm -rf build/ && npm run build"
