@@ -4,10 +4,10 @@ import moment from 'moment-business-days';
 export default class MarketScheduler {
   // @cutTimeUtc expected to match "HH:mm" format
   constructor(
-    public openTimeUtc: string,
-    public cutTimeUtc: string,
-    public dateFormat: string,
-    public datetimeFormat: string,
+    public readonly openTimeUtc: string,
+    public readonly cutTimeUtc: string,
+    public readonly dateFormat: string,
+    public readonly datetimeFormat: string,
     holidays: string[]
   ) {
     this.holidays = holidays;
