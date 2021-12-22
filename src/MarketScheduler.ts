@@ -4,10 +4,11 @@ import moment from 'moment-business-days';
 export default class MarketScheduler {
   // @cutTimeUtc expected to match "HH:mm" format
   constructor(
-    public cutTimeUtc: string,
-    public dateFormat: string,
-    public datetimeFormat: string,
-    holidays: string[]
+    public readonly openTimeUtc: string,
+    public readonly cutTimeUtc: string,
+    public readonly dateFormat: string,
+    public readonly datetimeFormat: string,
+    holidays: string[],
   ) {
     this.holidays = holidays;
   }
@@ -27,7 +28,23 @@ export default class MarketScheduler {
   public isMarketOpen(): boolean {
     const now = moment().utc();
 
-    return now.isBusinessDay() && now.isBefore(this.getClosingTime());
+    return (
+      now.isBusinessDay()
+      && now.isBefore(this.getClosingTime())
+      && now.isAfter(this.getOpenTime())
+    );
+  }
+
+  public isBeforeOpen(): boolean {
+    const now = moment().utc();
+
+    return now.isBefore(this.getOpenTime());
+  }
+
+  public isAfterClose(): boolean {
+    const now = moment().utc();
+
+    return now.isAfter(this.getClosingTime());
   }
 
   public isBusinessDay(): boolean {
@@ -48,7 +65,7 @@ export default class MarketScheduler {
 
   // @date should be a business day
   public getMarketOpeningDatetime(date: string): string {
-    return `${moment(date).businessSubtract(1).format(this.dateFormat)} ${this.cutTimeUtc}:01`;
+    return `${moment(date).format(this.dateFormat)} ${this.openTimeUtc}:00`;
   }
 
   // @date should be a business day
@@ -59,7 +76,7 @@ export default class MarketScheduler {
   public set holidays(holidays: string[]) {
     moment.updateLocale('us', {
       holidays,
-      holidayFormat: this.dateFormat
+      holidayFormat: this.dateFormat,
     });
 
     this.currentHolidays = holidays;
@@ -71,9 +88,17 @@ export default class MarketScheduler {
 
   private currentHolidays: string[] = [];
 
-  private getClosingTime(): Moment {
-    const closingSecondsAmount = moment.duration(this.cutTimeUtc).asSeconds();
+  private getOpenTime(): Moment {
+    const secondsAmount = moment.duration(this.openTimeUtc).asSeconds();
 
-    return moment().utc().startOf('day').add(closingSecondsAmount, 'seconds');
+    return moment().utc().subtract(3, 'hours').startOf('day')
+      .add(secondsAmount, 'seconds');
+  }
+
+  private getClosingTime(): Moment {
+    const secondsAmount = moment.duration(this.cutTimeUtc).asSeconds();
+
+    return moment().utc().subtract(3, 'hours').startOf('day')
+      .add(secondsAmount, 'seconds');
   }
 }

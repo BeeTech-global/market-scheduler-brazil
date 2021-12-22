@@ -16,7 +16,7 @@ const holiday = '2020-01-01';
 
 describe('MarketScheduler', () => {
   beforeEach(() => {
-    marketScheduler = new MarketScheduler('20:00', 'YYYY-MM-DD', 'YYYY-MM-DD HH:mm:ss', [holiday]);
+    marketScheduler = new MarketScheduler('12:00', '20:00', 'YYYY-MM-DD', 'YYYY-MM-DD HH:mm:ss', [holiday]);
   });
 
   describe('.isMarketOpenOnDate', () => {
@@ -79,7 +79,7 @@ describe('MarketScheduler', () => {
 
   describe('.getMarketOpeningDatetime', () => {
     it('Should return market opening time given a business day', () => {
-      expect(marketScheduler.getMarketOpeningDatetime(tuesday)).toBe(`${monday} 20:00:01`);
+      expect(marketScheduler.getMarketOpeningDatetime(tuesday)).toBe(`${tuesday} 12:00:00`);
     });
   });
 
@@ -133,6 +133,58 @@ describe('MarketScheduler', () => {
     it('Should return false on Monday just after market closes', () => {
       MockDate.set(`${monday} 17:00:01 UTC-3`);
       expect(marketScheduler.isMarketOpen()).toBe(false);
+      MockDate.reset();
+    });
+
+    it('Should return true on Monday just after market opens', () => {
+      MockDate.set(`${monday} 09:00:01 UTC-3`);
+      expect(marketScheduler.isMarketOpen()).toBe(true);
+      MockDate.reset();
+    });
+
+    it('Should return false on Monday just before market opens', () => {
+      MockDate.set(`${monday} 08:59:00 UTC-3`);
+      expect(marketScheduler.isMarketOpen()).toBe(false);
+      MockDate.reset();
+    });
+  });
+
+  describe('.isBeforeOpen', () => {
+    it('return true on mondays 8Am', () => {
+      MockDate.set(`${monday} 8:59:59 UTC-3`);
+      expect(marketScheduler.isBeforeOpen()).toBe(true);
+      MockDate.reset();
+    });
+
+    it('return false on mondays 10AM', () => {
+      MockDate.set(`${monday} 10:00:00 UTC-3`);
+      expect(marketScheduler.isBeforeOpen()).toBe(false);
+      MockDate.reset();
+    });
+
+    it('return false on mondays at 23:30', () => {
+      MockDate.set(`${monday} 23:59:59 UTC-3`);
+      expect(marketScheduler.isBeforeOpen()).toBe(false);
+      MockDate.reset();
+    });
+  });
+
+  describe('.isAfterClose', () => {
+    it('return false on mondays 8Am', () => {
+      MockDate.set(`${monday} 8:00:00 UTC-3`);
+      expect(marketScheduler.isAfterClose()).toBe(false);
+      MockDate.reset();
+    });
+
+    it('return false on mondays 10AM', () => {
+      MockDate.set(`${monday} 10:00:00 UTC-3`);
+      expect(marketScheduler.isAfterClose()).toBe(false);
+      MockDate.reset();
+    });
+
+    it('return false on mondays at 23:30', () => {
+      MockDate.set(`${monday} 23:30:00 UTC-3`);
+      expect(marketScheduler.isAfterClose()).toBe(true);
       MockDate.reset();
     });
   });

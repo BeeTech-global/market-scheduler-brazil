@@ -11,6 +11,8 @@ export declare class MarketScheduler {
   public businessAdd(date: string, days: number): string;
   public nextBusinessDay(): string;
   public isMarketOpen(): boolean;
+  public isBeforeOpen(): boolean;
+  public isAfterClose(): boolean;
   public isBusinessDay(): boolean;
   public today(): string;
   public now(): string;
