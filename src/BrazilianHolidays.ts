@@ -122,6 +122,8 @@ export default class BrazilianHolidays {
 
   private proclamacaoDaRepublica = '11-15';
 
+  private vesperaDeNatal = '12-24';
+
   private natal = '12-25';
 
   private reveillon = '12-31';
@@ -134,6 +136,7 @@ export default class BrazilianHolidays {
     this.nossaSenhora,
     this.finados,
     this.proclamacaoDaRepublica,
+    this.vesperaDeNatal,
     this.natal,
     this.reveillon,
   ];
