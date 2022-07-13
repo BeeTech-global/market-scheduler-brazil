@@ -1,12 +1,12 @@
 {
   "name": "@beetech/market-scheduler-brazil",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "A moment-business-days wrapper concerning Financial Operations based in Brazil",
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
   "engines": {
-    "node": ">=17.3.0",
-    "npm": ">=8.3.0"
+    "node": ">=12.22.5",
+    "npm": ">=6.14.14"
   },
   "scripts": {
     "test": "npm run build:dev && node_modules/.bin/jest test/unit --no-cache",
