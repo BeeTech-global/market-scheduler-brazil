@@ -30,6 +30,7 @@ export default class MarketScheduler {
 
     return (
       now.isBusinessDay()
+      && !this.partialHoliday(now)
       && now.isBefore(this.getClosingTime())
       && now.isAfter(this.getOpenTime())
     );
@@ -100,5 +101,13 @@ export default class MarketScheduler {
 
     return moment().utc().subtract(3, 'hours').startOf('day')
       .add(secondsAmount, 'seconds');
+  }
+
+  private partialHoliday(now: Moment): boolean {
+    return this.quartaFeiraDeCinzas(now);
+  }
+
+  private quartaFeiraDeCinzas(now: Moment): boolean {
+    return now.isAfter('2023-02-22 00:00:00 UTC-3') && now.isBefore('2023-02-22 13:00:00 UTC-3');
   }
 }
