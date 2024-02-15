@@ -13,4 +13,4 @@ const marketScheduler = new MarketScheduler(
   holidays,
 );
 
-module.exports = marketScheduler;
+export default marketScheduler;
