@@ -119,14 +119,14 @@ describe('MarketScheduler', () => {
 
   describe('.isMarketOpen', () => {
     it('Quarta Feira de Cinzas - Antes de 13h', () => {
-      const feriadoParcialQuartaFeiraDeCinzas = '2023-02-22 12:59:59 UTC-3';
+      const feriadoParcialQuartaFeiraDeCinzas = '2025-03-05 12:59:59 UTC-3';
       MockDate.set(feriadoParcialQuartaFeiraDeCinzas);
       expect(marketScheduler.isMarketOpen()).toBe(false);
       MockDate.reset();
     });
 
     it('Quarta Feira de Cinzas - Apos 13h', () => {
-      const feriadoParcialQuartaFeiraDeCinzas = '2023-02-22 13:00:01 UTC-3';
+      const feriadoParcialQuartaFeiraDeCinzas = '2025-03-05 13:00:01 UTC-3';
       MockDate.set(feriadoParcialQuartaFeiraDeCinzas);
       expect(marketScheduler.isMarketOpen()).toBe(true);
       MockDate.reset();
