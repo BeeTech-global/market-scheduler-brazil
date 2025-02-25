@@ -108,6 +108,6 @@ export default class MarketScheduler {
   }
 
   private quartaFeiraDeCinzas(now: Moment): boolean {
-    return now.isAfter('2023-02-22 00:00:00 UTC-3') && now.isBefore('2023-02-22 13:00:00 UTC-3');
+    return now.isAfter('2025-03-05T00:00:00-03:00') && now.isBefore('2025-03-05T13:00:00-03:00');
   }
 }
